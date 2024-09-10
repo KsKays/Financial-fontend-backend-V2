@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {useFinancialRecords} from "../contexts/Financial.context"
+import { useFinancialRecords } from "../contexts/Financial.context";
 import Swal from "sweetalert2";
 
 const FinancialRecordTable = () => {
-  const { records , deleteRecord} = useFinancialRecords()
+  const { records, deleteRecord } = useFinancialRecords();
   const navigate = useNavigate();
   const handleDelete = (id) => {
     Swal.fire({
@@ -83,6 +83,24 @@ const FinancialRecordTable = () => {
             ))}
         </tbody>
       </table>
+
+      {/* Prev-Next page */}
+      <div
+        className="flex justify-center items-center rounded-lg mt-6
+      "
+      >
+        <div className="join justify-center align-middle">
+          <button className="join-item btn" alt="prev-page">
+            «
+          </button>
+          <button className="join-item btn" alt="pagenumber">
+            Page 22
+          </button>
+          <button className="join-item btn " alt="next-page">
+            »
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

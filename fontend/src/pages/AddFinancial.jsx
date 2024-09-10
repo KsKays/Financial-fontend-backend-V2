@@ -1,9 +1,10 @@
 import { useState } from "react";
-import {useFinancialRecords} from "../contexts/Financial.context"
 import { useUser } from "@clerk/clerk-react";
+import { useFinancialRecords } from "../contexts/Financial.context";
+
 const AddFinancial = () => {
-  const { addRecord} = useFinancialRecords();
-  const {user} = useUser();
+  const { addRecord } = useFinancialRecords();
+  const { user } = useUser();
 
   const [financials, SetFinancials] = useState({
     userId: "",
@@ -20,18 +21,16 @@ const AddFinancial = () => {
   };
 
   const handleSubmit = async () => {
-   try {
-    const updateFinancial = { ...financials, userId: user.id} //เป็นการเซ็ตค่าให้ userId เป็นตัวของคนที่ login
+    try {
+      const updateFinancial = { ...financials, userId: user.id }; //เป็นการเซ็ตค่าให้ userId เป็นตัวของคนที่ login
       console.log(financials);
-    await addRecord(updateFinancial);
-   } catch (error) {
-    
-   }
+      await addRecord(updateFinancial);
+    } catch (error) {}
   };
 
   return (
-    <div className="max-w-md mx-10 p-8 rounded-lg space-y-6 text-start ">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96 ">
+    <div className="max-w-md mx-10 rounded-lg space-y-6 text-start ">
+      <form className="bg-cyan-100 drop-shadow-lg rounded px-8 pt-6 pb-8 mb-4 w-96 ">
         <div className="relative">
           <span className="block  text-lg  font-medium text-gray-700 mt-3">
             Description

@@ -1,11 +1,12 @@
 import { useUser } from "@clerk/clerk-react";
 import AddFinancial from "../AddFinancial";
-import FinancialTable from "../FinancialTable";
-import EditFinancial from "../EditFinancial";
+//import FinancialTable from "../FinancialTable";
+import FinancialRecordTable from "../FinancialTableV2";
 
 function index() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { user } = useUser();
+
   return (
     <div className="max-w-screen-2xl container mx-auto px-4">
       <div className="text-center text-4xl md:text-3xl md:leading-snug font-bold my-2 p-5">
@@ -16,11 +17,11 @@ function index() {
       <div className="flex justify-center mx-auto">
         <div className="overflow-x-auto flex mr-4">
           <AddFinancial />
-          <FinancialTable />
+          <FinancialRecordTable />
+          {/* <FinancialTable /> */}
         </div>
       </div>
-
-      <div> Tatal Monthly: 000 ฿</div>
+      {/* <div> Tatal Monthly: 000 ฿</div> */}
     </div>
   );
 }

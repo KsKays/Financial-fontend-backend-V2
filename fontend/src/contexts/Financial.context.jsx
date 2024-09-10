@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import FinancialService from "../services/Financial.service";
 import { useUser } from "@clerk/clerk-react";
+import FinancialService from "../services/Financial.service";
 
 export const FinancialRecordContext = createContext();
 
@@ -8,8 +8,10 @@ export const FinancialRecordsProvider = ({ children }) => {
   const [records, setRecords] = useState([]);
   const { user } = useUser();
 
+  // fetchRecords เป็นฟังก์ชันสำหรับ ดึงข้อมูล
   const fetchRecords = async () => {
-    if (!user) return;
+    if (!user) return; //เช็คว่ามี user ทำการ login อยู่หรือไม่ ถ้าไม่ ฟังก์ชันจะหยุดทำงานทันที
+    // เช็คข้อผิดพลาดด้วย try/catch
     try {
       const response = await FinancialService.getAllFinancialRecordsByUserId(
         user.id
@@ -22,11 +24,12 @@ export const FinancialRecordsProvider = ({ children }) => {
       console.log(error);
     }
   };
-
   useEffect(() => {
     fetchRecords();
   }, [user]);
 
+  //addRecord
+  //รับพารามิเตอร์ record
   const addRecord = async (record) => {
     try {
       const response = await FinancialService.createFinancialRecord(record);
@@ -65,7 +68,6 @@ export const FinancialRecordsProvider = ({ children }) => {
     }
   };
 
- 
   return (
     <FinancialRecordContext.Provider
       value={{ records, addRecord, updateRecord, deleteRecord }}

@@ -17,6 +17,11 @@ const getAllFinancialRecordsById = async (id) => {
   return await api.get(`${FINANCIAL_API_URL}/${id}`);
 };
 
+//get financial in record By id
+const getFinancialByRecordId = async (recordId) => {
+  return await api.get(`${FINANCIAL_API_URL}/record/${recordId}`);
+};
+
 //create a new record
 const createFinancialRecord = async (record) => {
   return await api.post(`${FINANCIAL_API_URL}`, record);
@@ -39,6 +44,7 @@ const FinancialService = {
   createFinancialRecord,
   updateFinancialRecord,
   deleteFinancialRecord,
+  getFinancialByRecordId,
 };
 
 export default FinancialService;

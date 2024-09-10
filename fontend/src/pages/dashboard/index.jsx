@@ -1,7 +1,7 @@
 import { useUser } from "@clerk/clerk-react";
 import AddFinancial from "../AddFinancial";
 //import FinancialTable from "../FinancialTable";
-import FinancialRecordTable from "../FinancialTableV2";
+import FinancialRecordTable from "../FinancialTable";
 
 function index() {
   // eslint-disable-next-line react-hooks/rules-of-hooks

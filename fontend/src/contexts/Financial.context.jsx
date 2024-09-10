@@ -70,7 +70,7 @@ export const FinancialRecordsProvider = ({ children }) => {
 
   return (
     <FinancialRecordContext.Provider
-      value={{ records, addRecord, updateRecord, deleteRecord }}
+      value={{ records, addRecord, updateRecord, deleteRecord, fetchRecords }}
     >
       {children}
     </FinancialRecordContext.Provider>

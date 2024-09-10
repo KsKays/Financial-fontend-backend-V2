@@ -19,9 +19,11 @@ const Navbar = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "synthwave" : "dark"));
   };
   return (
-    <div className="navbar bg-neutral text-neutral-content">
+    <div className="navbar bg-neutral text-neutral-content rounded-b-lg ">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Financial Tracker</a>
+        <a href="/" className="btn btn-ghost text-xl">
+          Financial Tracker
+        </a>
       </div>
 
       <div className="flex-none gap-2">
@@ -29,7 +31,7 @@ const Navbar = () => {
           <SignedOut>
             <SignUpButton
               mode="modal"
-              className="btn btn-outline mr-4"
+              className="btn btn-outline btn-info mr-4"
             ></SignUpButton>
             <SignInButton
               mode="modal"

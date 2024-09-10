@@ -30,7 +30,7 @@ const AddFinancial = () => {
 
   return (
     <div className="max-w-md mx-10 rounded-lg space-y-6 text-start ">
-      <form className="bg-cyan-100 drop-shadow-lg rounded px-8 pt-6 pb-8 mb-4 w-96 ">
+      <form className="bg-slate-50 drop-shadow-lg rounded px-8 pt-6 pb-8 mb-4 w-96 ">
         <div className="relative">
           <span className="block  text-lg  font-medium text-gray-700 mt-3">
             Description
@@ -116,13 +116,13 @@ const AddFinancial = () => {
           </select>
         </div>
 
-        <div className="mb-6 text-center pt-5">
+        <div className="mb-6 text-center pt-5 ">
           <button
-            className="btn btn-primary"
+            className="btn btn-active btn-neutral text-white font-normal text-base"
             type="submit"
             onClick={handleSubmit}
           >
-            ส่งข้อมูล
+            Add Financial Tracker
           </button>
         </div>
       </form>

@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import { useFinancialRecords } from "../contexts/Financial.context";
 
 const AddFinancial = () => {
   const { addRecord } = useFinancialRecords();
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const [financials, SetFinancials] = useState({
     userId: "",
@@ -20,12 +23,39 @@ const AddFinancial = () => {
     SetFinancials({ ...financials, [name]: value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !financials.description ||
+      !financials.amount ||
+      !financials.date ||
+      !financials.category ||
+      !financials.paymentMethod
+    ) {
+      Swal.fire({
+        title: "Missing Fields",
+        text: "Please fill out all required fields.",
+        icon: "warning",
+      });
+      return;
+    }
     try {
       const updateFinancial = { ...financials, userId: user.id }; //เป็นการเซ็ตค่าให้ userId เป็นตัวของคนที่ login
       console.log(financials);
       await addRecord(updateFinancial);
-    } catch (error) {}
+      Swal.fire({
+        title: "Record Added",
+        text: "Your financial records have been successfully added.",
+        icon: "success",
+      });
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+        title: "Record Added Failed",
+        text: error?.message || "An error occurred while adding a record",
+        icon: "error",
+      });
+    }
   };
 
   return (

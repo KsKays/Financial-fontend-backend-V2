@@ -17,4 +17,7 @@ router.put("/:id", financialController.update);
 //delete http://localhost:5000/api/v1/financial/userId
 router.delete("/:id", financialController.delete);
 
+//getByRecordId http://localhost:5000/api/v1/financial/record/:recordId
+router.get("/record/:recordId", financialController.findOneByRocordId);
+
 module.exports = router;

@@ -15,7 +15,7 @@ const FinancialRecordTable = () => {
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 10;
+  const recordsPerPage = 7;
 
   // Get current records for the current page
   const indexOfLastRecord = currentPage * recordsPerPage;
@@ -28,7 +28,7 @@ const FinancialRecordTable = () => {
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: `You are about to delete record with ID: ${id}`,
+      text: `Are you about to delete this record ?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -38,11 +38,7 @@ const FinancialRecordTable = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteRecord(id);
-        Swal.fire(
-          "Deleted!",
-          `Record with ID: ${id} has been deleted.`,
-          "success"
-        );
+        Swal.fire("Deleted!", `Record has been deleted.`, "success");
       }
     });
   };

@@ -26,7 +26,6 @@ exports.create = async (req, res) => {
   }
 };
 
-
 //Retreiev all financial record
 exports.findAll = async (req, res) => {
   await Financial.findAll()
@@ -35,9 +34,7 @@ exports.findAll = async (req, res) => {
     })
     .catch((error) => {
       res.status(500).send({
-        message:
-          error.massage ||
-          "Error",
+        message: error.massage || "Error",
       });
     });
 };
@@ -45,15 +42,36 @@ exports.findAll = async (req, res) => {
 //Retreive all financial records by User Id
 exports.findAllByUserId = async (req, res) => {
   const userId = req.params.userId;
-  await Financial.findAll({ where: { userId: userId } })
+  await Financial.findAll({
+    where: { userId: userId },
+    order: [["createdAt", "DESC"]],
+  })
     .then((data) => {
       res.send(data);
     })
     .catch((error) => {
       res.status(500).send({
-        message: error.massage || "Some error occured while retrieving the financial record",  
+        message:
+          error.massage ||
+          "Some error occured while retrieving the financial record",
       });
+    });
+};
+
+//Retreive financial records by record Id
+exports.findOneByRocordId = async (req, res) => {
+  const recordId = req.params.recordId;
+  await Financial.findOne({ where: { id: recordId } })
+    .then((data) => {
+      res.send(data);
     })
+    .catch((error) => {
+      res.status(500).send({
+        message:
+          error.massage ||
+          "Some error occured while retrieving the financial record",
+      });
+    });
 };
 
 //Update a financial record
@@ -110,4 +128,3 @@ exports.delete = async (req, res) => {
       });
     });
 };
-

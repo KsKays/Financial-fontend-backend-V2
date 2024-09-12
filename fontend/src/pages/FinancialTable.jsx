@@ -15,7 +15,7 @@ const FinancialRecordTable = () => {
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 7;
+  const recordsPerPage = 9;
 
   // Get current records for the current page
   const indexOfLastRecord = currentPage * recordsPerPage;
@@ -64,6 +64,14 @@ const FinancialRecordTable = () => {
     }
   };
 
+  // Calculate total amount
+  const calculateTotalAmount = () => {
+    return records.reduce(
+      (total, record) => total + parseFloat(record.amount || 0),
+      0
+    );
+  };
+
   return (
     <div className=" flex flex-col justify-between ">
       <div className="overflow-x-auto rounded-lg ">
@@ -109,6 +117,16 @@ const FinancialRecordTable = () => {
                 </tr>
               ))}
           </tbody>
+          <tfoot>
+            <tr className="bg-gray-100 rounded-b-lg">
+              <td
+                colSpan="7"
+                className="py-3 px-4 text-right font-bold rounded-b-lg"
+              >
+                Total Amount: ฿{calculateTotalAmount().toFixed(2)}
+              </td>
+            </tr>
+          </tfoot>
         </table>
 
         {/* Btn Prev-Next page */}

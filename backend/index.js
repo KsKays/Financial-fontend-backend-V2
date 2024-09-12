@@ -4,8 +4,9 @@ const FinancialRouter = require("./router/financial.router");
 require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
+const fontend_url = process.env.FRONTEND_URL;
 const corsOptions = {
-  origin: "https://financial-fontend-backend-v2.onrender.com",
+  origin: fontend_url,
 };
 
 //use Middleware
